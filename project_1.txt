@@ -1,0 +1,78 @@
+"""
+
+Michael Hoyle
+ITN160-4C1
+
+Create app to score spelling bee competition.
+"""
+
+from guizero import *
+
+# Global constants
+APP_WIDTH = 650
+APP_HEIGHT = 350
+
+def main():
+
+    def enter_name():
+        Text(window1, text='Welcome ', align='top')
+        name_1.value = players_name.value
+        name_window.show()
+        players_name.clear()
+
+    def enter_name2():
+        Text(window2, text='Welcome ', align='top')
+        name_2.value = players_name.value
+        name_window.show()
+        players_name.clear()
+
+    def open_window1(value):
+        counter1.value = int(counter1.value) + value
+        if score_1.value == '10':
+            Text(name_window, text="Champion!", size=60, color='red')
+
+    def open_window2(value):
+        counter2.value = int(counter2.value) + value
+        if score_2.value == '10':
+            Text(name_window, text="Champion!", size=60, color='red')
+
+    # New round and contestant widget layout
+    app = App("Spelling Bee Control Panel", bg="light gray", width=APP_WIDTH, height=APP_HEIGHT)
+    Text(app)  # spacer
+    button_1 = PushButton(app, text="Start New Round", command=enter_name, width=20, height=1)
+    button_1.text_size = 15
+
+    display_box1 = Box(app, border=True, height=100, width=200, align='left')
+    text1 = Text(display_box1, text="Contestant 1", size=15)
+    text1.text_color = "blue"
+    button_2 = PushButton(display_box1, command=open_window1, text="Correct", args=[1], width=8, height=1)
+    button_2.text_size = 15
+    button_2.text_color = "blue"
+
+    display_box2 = Box(app, border=True, height=100, width=200, align='right')
+    text2 = Text(display_box2, text="Contestant 2", size=15)
+    text2.text_color = "green"
+    button_3 = PushButton(display_box2, command=open_window2, args=[1], text="Correct", width=8, height=1)
+    button_3.text_size = 15
+    button_3.text_color = "green"
+
+    window1 = Window(app, title="Contestant 1 Score", layout='auto')
+    name_1 = Text(window1, color='blue', size=30)
+    counter1 = Text(window1, text="0", color='red', size=125,  width='fill', height='fill')
+
+    window2 = Window(app, title="Contestant 2 Score")
+    counter2 = Text(window2, text="0", color='red', size=125, width='fill', height='fill')
+    name_2 = Text(window2, color='blue', size=30)
+
+    name_window = Window(app, title="Spelling Bee", width=300, height=150)
+    player_1 = Text(name_window, text='Enter Player 1 name')
+    players_name = TextBox(name_window, width=30)
+    ok_button = PushButton(name_window, text='OK', width=10, height=2, align='left', command=enter_name)
+    cancel_button = PushButton(name_window, text='Cancel', width=10, height=2, align='right')
+    name_window.hide()
+
+    app.display()
+
+
+if __name__ == '__main__':
+    main()
