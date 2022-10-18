@@ -1,6 +1,5 @@
 """
 Michael Hoyle
-ITN160-4C1
 Project 1: Spelling Bee Scoring Control Panel
 02/17/2022
 
@@ -9,10 +8,6 @@ and scores cards to score spelling bee competition.
 
 """
 
-# Resources:
-# https://lawsie.github.io/guizero/alerts/
-# ITN160 learning modules and class recordings
-# Instructor notes/feedback
 
 from guizero import *
 
